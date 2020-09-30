@@ -11,10 +11,27 @@ const app = Vue.createApp({
       this.currentUserInput = event.target.value;
     },
     setText() {
-      this.message = this.currentUserInput;
+      //this.message = this.currentUserInput;
+      this.message=this.$refs.userText.value;
     },
   },
+  beforeCreate(){
+    console.log('beforeCreate()');
+  },
+  created(){
+    console.log('created()');
+  }, beforeUpdated(){
+    console.log('beforeMount');
+  }, updated(){
+    console.log("updated()");
+  }, unmounted(){
+    console.log("unmounted()");
+  }
 });
+app.mount('#app');
+setTimeout(function (){
+  app.unmount();
+}, 3000);
 
 const app2=Vue.createApp({
   data(){
@@ -42,5 +59,3 @@ const handler ={
 const proxy=new Proxy(data, handler);
 
 proxy.message='Hello !!!';
-
-app.mount('#app');
